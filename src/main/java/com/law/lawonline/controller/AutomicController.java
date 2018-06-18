@@ -2,6 +2,8 @@ package com.law.lawonline.controller;
 
 import com.law.lawonline.common.PageViewer;
 import com.law.lawonline.helper.Message;
+import com.law.lawonline.service.SearchService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,9 @@ import java.security.Principal;
 
 @Controller
 public class AutomicController {
+    @Autowired
+    private SearchService searchService;
+
     @ModelAttribute("tabId")
     String tabId() {
         return "tab-automic";
@@ -35,6 +40,9 @@ public class AutomicController {
                     new DeveloperResource("W3Schools", "http://www.w3schools.com")};
 
             model.addAttribute("count", devResources.length);
+
+            //TODO test only
+            searchService.search(searchKey);
         }
 
         model.addAttribute(Message.MESSAGE_ATTRIBUTE, msg);

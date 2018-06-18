@@ -1,5 +1,6 @@
 package com.law.lawonline.config;
 
+import com.law.lawonline.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -20,7 +21,7 @@ import static org.hibernate.cfg.Environment.*;
 @Configuration
 @EnableTransactionManagement
 @PropertySource({"classpath:db-cfg.properties", "classpath:application.properties"})
-@ComponentScan("com.law.lawonline.error")
+@ComponentScan({"com.law.lawonline.error", "com.law.lawonline.service", "com.law.lawonline.dao"})
 public class WebAppConfig {
 
     @Autowired
