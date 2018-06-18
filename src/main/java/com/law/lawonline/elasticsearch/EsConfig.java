@@ -4,7 +4,6 @@ import org.elasticsearch.client.Client;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
@@ -22,14 +21,14 @@ import java.net.InetAddress;
 @EnableElasticsearchRepositories(basePackages = "com.law.lawonline.elasticsearch.repository")
 public class EsConfig {
 
-//    @Value("${elasticsearch.host}")
-    private String EsHost="localhost";
+    //    @Value("${elasticsearch.host}")
+    private String EsHost = "localhost";
 
-//    @Value("${elasticsearch.port}")
-    private int EsPort=9300;
+    //    @Value("${elasticsearch.port}")
+    private int EsPort = 9300;
 
-//    @Value("${elasticsearch.clustername}")
-    private String EsClusterName="mkyong-cluster";
+    //    @Value("${elasticsearch.clustername}")
+    private String EsClusterName = "mkyong-cluster";
 
     @Bean
     public Client client() throws Exception {

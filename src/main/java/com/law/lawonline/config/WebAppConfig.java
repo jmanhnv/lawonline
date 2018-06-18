@@ -1,6 +1,5 @@
 package com.law.lawonline.config;
 
-import com.law.lawonline.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -20,12 +19,12 @@ import java.util.Properties;
 import static org.hibernate.cfg.Environment.*;
 
 @Configuration
+@EnableJpaAuditing
 @EnableTransactionManagement
 @PropertySource({"classpath:db-cfg.properties", "classpath:application.properties"})
 @ComponentScan({"com.law.lawonline.error", "com.law.lawonline.service",
         "com.law.lawonline.dao", "com.law.lawonline.elasticsearch.service",
         "com.law.lawonline.elasticsearch.repository"})
-@EnableJpaAuditing
 public class WebAppConfig {
 
     @Autowired
