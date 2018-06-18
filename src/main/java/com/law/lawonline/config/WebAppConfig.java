@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -21,7 +22,10 @@ import static org.hibernate.cfg.Environment.*;
 @Configuration
 @EnableTransactionManagement
 @PropertySource({"classpath:db-cfg.properties", "classpath:application.properties"})
-@ComponentScan({"com.law.lawonline.error", "com.law.lawonline.service", "com.law.lawonline.dao"})
+@ComponentScan({"com.law.lawonline.error", "com.law.lawonline.service",
+        "com.law.lawonline.dao", "com.law.lawonline.elasticsearch.service",
+        "com.law.lawonline.elasticsearch.repository"})
+@EnableJpaAuditing
 public class WebAppConfig {
 
     @Autowired
