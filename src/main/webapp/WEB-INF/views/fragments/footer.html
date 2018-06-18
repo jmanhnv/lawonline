@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="../../../assets/css/bootstrap.min-3.0.css" rel="stylesheet" media="screen" th:href="@{/assets/css/bootstrap.min-3.0.css}"/>
+    <link href="../../../assets/css/oneui.min-3.3.css" rel="stylesheet" media="screen" th:href="@{/assets/css/oneui.min-3.3.css}"/>
+</head>
+<body>
+<div th:fragment="footer">
+    <div class="pull-left">
+        <a class="font-w600" th:href="@{/}"><i class="fa fa-home"></i> Home</a>
+    </div>
+    <div class="pull-right">
+        <span class="font-w600"
+              th:text="'&copy;' + ${#temporals.format(#temporals.createNow(), 'yyyy')} +' The Dev team'">2018</span>
+    </div>
+</div>
+<div th:fragment="footer-admin">
+    <div class="pull-left">
+        <a class="font-w600" th:href="@{/}"><i class="fa fa-home"></i> Home</a>
+    </div>
+    <div class="pull-right">
+        <span class="font-w600"
+              th:text="'&copy;' + ${#temporals.format(#temporals.createNow(), 'yyyy')} + ' The Dev team ' +${@environment.getProperty('app.version')}">2018</span>
+    </div>
+</div>
+</body>
+</html>

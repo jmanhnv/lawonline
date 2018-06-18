@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Error page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700" />
+    <link href="../../../assets/css/bootstrap.min-3.0.css" rel="stylesheet" media="screen" th:href="@{/assets/css/bootstrap.min-3.0.css}"/>
+    <link href="../../../assets/css/oneui.min-3.3.css" rel="stylesheet" media="screen" th:href="@{/assets/css/oneui.min-3.3.css}"/>
+    <script src="../../../assets/js/oneui.min-3.4.js" th:src="@{/assets/js/oneui.min-3.4.js}"></script>
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments/alert :: alert (type='danger', message=${message})"></div>
+    <div th:include="fragments/footer :: footer"></div>
+</div>
+</body>
+</html>

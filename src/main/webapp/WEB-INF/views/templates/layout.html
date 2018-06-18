@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Tư vấn luật tự động</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/images/favicon.png" th:href="@{/assets/images/favicon.png}"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700" />
+    <link href="../../../assets/css/bootstrap.min-3.0.css" rel="stylesheet" media="screen" th:href="@{/assets/css/bootstrap.min-3.0.css}"/>
+    <link href="../../../assets/css/oneui.min-3.3.css" rel="stylesheet" media="screen" th:href="@{/assets/css/oneui.min-3.3.css}"/>
+    <link href="../../../assets/css/custom.css" rel="stylesheet" media="screen" th:href="@{/assets/css/custom.css}"/>
+    <script src="../../../assets/js/oneui.min-3.4.js" th:src="@{/assets/js/oneui.min-3.4.js}"></script>
+</head>
+<body>
+<div class="full-screen-preview">
+    <!--/* Header fragment */-->
+    <div th:replace="fragments/header :: header">
+        <!--HEADER TEMPLATE-->
+    </div>
+
+    <!--<div class="container-fluid"></div>-->
+    <!--<div class="content overflow-hidden"></div>-->
+    <!--/* Content fragment */-->
+    <div class="block-content">
+        <div layout:fragment="content">
+            <!--CONTENT TEMPLATE-->
+        </div>
+    </div>
+
+    <!--/* Footer fragment */-->
+    <div class="content-mini content-mini-full font-s12 clearfix">
+        <div th:replace="fragments/footer :: footer">
+            <!--FOOTER TEMPLATE-->
+        </div>
+    </div>
+</div>
+</body>
+</html>

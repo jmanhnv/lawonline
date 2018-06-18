@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration scan="true" scanPeriod="30 seconds">
+    <!--Setting the context name-->
+    <contextName>tvlo</contextName>
+
+    <!--Defining variables-->
+    <property name="USER_HOME" value="C:/logs"/>
+
+    <!--File appender-->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <!--Using tomcat logs directory-->
+        <!--<file>${catalina.home}/logs/${CONTEXT_NAME}.log</file>-->
+        <file>${USER_HOME}/${CONTEXT_NAME}.log</file>
+        <encoder>
+            <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--Console appender-->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="STDOUT"/>
+        <queueSize>1000</queueSize>
+    </appender>
+
+    <!--DEBUG INFO WARN ERROR FATAL-->
+    <root level="ALL">
+        <appender-ref ref="STDOUT"/>
+    </root>
+    <root level="ERROR">
+        <appender-ref ref="FILE"/>
+    </root>
+
+    <!-- Turn on debug logging for all loggers under com.tvnluttng.controller -->
+    <logger name="com.tvnluttng" level="ALL"/>
+    <logger name="com.zaxxer.hikari" level="DEBUG"/>
+</configuration>

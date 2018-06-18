@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="../../../assets/css/bootstrap.min-3.0.css" rel="stylesheet" media="screen" th:href="@{/assets/css/bootstrap.min-3.0.css}"/>
+    <link href="../../../assets/css/oneui.min-3.3.css" rel="stylesheet" media="screen" th:href="@{/assets/css/oneui.min-3.3.css}"/>
+</head>
+<body>
+<div th:fragment="header">
+    <header id="header-navbar" class="content-mini content-mini-full">
+        <div class="block-header">
+            <h3 class="block-title">HỖ TRỢ TƯ PHÁP</h3>
+        </div>
+    </header>
+    <!-- Menu items -->
+    <!--<ul class="nav nav-pills nav-justified push">-->
+    <ul class="nav nav-tabs nav-tabs-alt">
+        <li th:classappend="${tabId == 'tab-home' ? 'active' : ''}">
+            <a href="#" th:href="@{/}">TRANG CHỦ</a>
+        </li>
+        <li th:classappend="${tabId == 'tab-automic' ? 'active' : ''}">
+            <a href="#" th:href="@{/automic}">TƯ VẤN LUẬT TỰ ĐỘNG</a>
+        </li>
+        <li th:classappend="${tabId == 'tab-consult' ? 'active' : ''}">
+            <a href="#" th:href="@{/consult}">CHUYÊN GIA TƯ VẤN</a>
+        </li>
+        <li th:classappend="${tabId == 'tab-contact' ? 'active' : ''}">
+            <a href="#" th:href="@{/contact}">LIÊN HỆ</a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

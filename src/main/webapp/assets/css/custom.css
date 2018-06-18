@@ -1,0 +1,13 @@
+#header-navbar {
+    background-color: #337ab7;
+    text-align: center;
+    color: white;
+}
+
+#header-navbar > .block-header > .block-title {
+    font-size: 32px;
+}
+
+.block > .nav-tabs.nav-tabs-alt {
+    background-color: #f9f9f9;
+}
