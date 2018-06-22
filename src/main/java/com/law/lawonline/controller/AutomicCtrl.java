@@ -2,6 +2,7 @@ package com.law.lawonline.controller;
 
 import com.law.lawonline.common.PageViewer;
 import com.law.lawonline.helper.MessageHelper;
+import com.law.lawonline.model.Result;
 import com.law.lawonline.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContext;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class AutomicCtrl {
@@ -33,14 +35,8 @@ public class AutomicCtrl {
         if (searchKey == null || searchKey.isEmpty()) {
             MessageHelper.addInfoAttribute(model, "Bạn chưa nhập nội dung tìm kiếm.");
         } else {
-            DeveloperResource[] devResources = {new DeveloperResource("Google", "http://www.google.com"),
-                    new DeveloperResource("Stackoverflow", "http://www.stackoverflow.com"),
-                    new DeveloperResource("W3Schools", "http://www.w3schools.com")};
-
-            model.addAttribute("count", devResources.length);
-
-            //TODO test only
-            searchService.search(searchKey);
+            List<Result> results = searchService.search(searchKey);
+            model.addAttribute("results", results);
         }
 
         return PageViewer.AUTOMIC.getView();
@@ -62,21 +58,4 @@ public class AutomicCtrl {
         return "admin";
     }
 
-    public static final class DeveloperResource {
-        private final String name;
-        private final String url;
-
-        public DeveloperResource(String name, String url) {
-            this.name = name;
-            this.url = url;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public String getUrl() {
-            return url;
-        }
-    }
 }

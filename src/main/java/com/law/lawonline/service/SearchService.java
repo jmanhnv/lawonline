@@ -1,24 +1,27 @@
 package com.law.lawonline.service;
 
 import com.law.lawonline.dao.FileDao;
-import com.law.lawonline.model.ResultSearch;
+import com.law.lawonline.helper.RestApi;
+import com.law.lawonline.model.Result;
+import com.law.lawonline.model.SearchInput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service("searchService")
 public class SearchService {
     @Autowired
     private FileDao fileDao;
 
-    public ResultSearch[] search(final String text) {
-        //TODO test only
+    public List<Result> search(final String text) {
         fileDao.save();
-        ResultSearch[] resultSearches = new ResultSearch[3];
-        for (int i = 0; i < 3; i++) {
-            ResultSearch rs = new ResultSearch(1, "aaaa", "ddd", 50.0);
-            resultSearches[i] = rs;
-        }
 
-        return resultSearches;
+        SearchInput input = new SearchInput();
+        input.setInputText(text);
+        input.setIndexFrom(0);
+        input.setIndexTo(10);
+
+        return RestApi.search(input);
     }
 }
