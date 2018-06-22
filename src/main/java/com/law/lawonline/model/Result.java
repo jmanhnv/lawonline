@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @JsonRootName(value = "result")
 public class Result {
@@ -49,5 +50,9 @@ public class Result {
 
     public void setFilePath(String filePath) {
         this.filePath = filePath;
+    }
+
+    public String getContent() {
+        return this.highLight.stream().map(Object::toString).collect(Collectors.joining("<br>"));
     }
 }
