@@ -17,6 +17,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
 
@@ -44,7 +45,7 @@ public final class RestApi implements Constants {
             os.write(input.getBytes(UTF8));
             os.flush();
 
-            BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8));
 
             String output;
             logger.info("Output from Server...\n");
@@ -52,8 +53,7 @@ public final class RestApi implements Constants {
             while ((output = br.readLine()) != null) {
                 logger.info(output);
 
-                ResultContainer rsc = mapper().readValue(new String(output.getBytes(), java.nio.charset.StandardCharsets.UTF_8),
-                        ResultContainer.class);
+                ResultContainer rsc = mapper().readValue(output, ResultContainer.class);
                 results.addAll(rsc.getResult());
             }
             conn.disconnect();
