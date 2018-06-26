@@ -31,4 +31,7 @@ public interface Constants {
 
     String DEFAULT_DATE_FORMAT = "dd/MM/yyyy";
     String DEFAULT_DATETIME_FORMAT = "dd/MM/yyyy HH:mm";
+
+    String USER_HOME = System.getProperty("user.home");
+    String FILE_SEPARATOR = System.getProperty("file.separator");
 }
