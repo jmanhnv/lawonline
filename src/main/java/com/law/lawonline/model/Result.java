@@ -12,6 +12,9 @@ public class Result {
     private String id;
 
     @JsonProperty
+    private String fileName;
+
+    @JsonProperty
     private List<String> highLight;
 
     @JsonProperty
@@ -20,8 +23,23 @@ public class Result {
     @JsonProperty
     private Float score;
 
+    public Result() {
+    }
+
+    public Result(String id, String fileName, List<String> highLight, String filePath, Float score) {
+        this.id = id;
+        this.fileName = fileName;
+        this.highLight = highLight;
+        this.filePath = filePath;
+        this.score = score;
+    }
+
     public String getId() {
         return id;
+    }
+
+    public String getFileName() {
+        return fileName;
     }
 
     public Float getScore() {
@@ -34,6 +52,10 @@ public class Result {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     public List<String> getHighLight() {
