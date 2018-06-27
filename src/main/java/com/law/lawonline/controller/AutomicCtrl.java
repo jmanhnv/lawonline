@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -32,8 +31,8 @@ public class AutomicCtrl implements Constants {
         return "tab-automic";
     }
 
-    @RequestMapping(value = "/automic", method = RequestMethod.GET)
-    public String automic(Model model) {
+    @RequestMapping(value = "/automic")
+    public String automic() {
         return PageViewer.AUTOMIC.getView();
     }
 
@@ -49,7 +48,7 @@ public class AutomicCtrl implements Constants {
         return PageViewer.AUTOMIC.getView();
     }
 
-    @RequestMapping(value = "/preview", method = RequestMethod.GET)
+    @RequestMapping(value = "/preview")
     public void preview(HttpServletResponse response) throws IOException {
         File f = new File(USER_HOME + FILE_SEPARATOR + "data" + FILE_SEPARATOR + "Ban so 154-2018-HSST.pdf");
         FileInputStream fis = new FileInputStream(f);
