@@ -1,18 +1,45 @@
 package com.law.lawonline.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Result {
-
+@JsonRootName(value = "result")
+public class ResultCopyOf {
+    @JsonProperty
     private String id;
-    private String content;
+
+    @JsonProperty
+    private String fileName;
+
+    @JsonProperty
     private List<String> highLight;
+
+    @JsonProperty
     private String filePath;
+
+    @JsonProperty
     private Float score;
+
+    public ResultCopyOf() {
+    }
+
+    public ResultCopyOf(String id, String fileName, List<String> highLight, String filePath, Float score) {
+        this.id = id;
+        this.fileName = fileName;
+        this.highLight = highLight;
+        this.filePath = filePath;
+        this.score = score;
+    }
 
     public String getId() {
         return id;
+    }
+
+    public String getFileName() {
+        return fileName;
     }
 
     public Float getScore() {
@@ -25,6 +52,10 @@ public class Result {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     public List<String> getHighLight() {

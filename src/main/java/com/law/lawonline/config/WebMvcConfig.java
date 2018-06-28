@@ -83,12 +83,12 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter implements Constants {
         return thymeleafViewResolver;
     }
 
-    @Override
-    public Validator getValidator() {
-        LocalValidatorFactoryBean validator = new LocalValidatorFactoryBean();
-        validator.setValidationMessageSource(messageSource());
-        return validator;
-    }
+//    @Override
+//    public Validator getValidator() {
+//        LocalValidatorFactoryBean validator = new LocalValidatorFactoryBean();
+//        validator.setValidationMessageSource(messageSource());
+//        return validator;
+//    }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {

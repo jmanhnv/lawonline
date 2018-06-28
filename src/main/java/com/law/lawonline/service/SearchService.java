@@ -1,11 +1,12 @@
 package com.law.lawonline.service;
 
-import com.google.common.collect.Lists;
 import com.law.lawonline.common.Constants;
 import com.law.lawonline.dao.FileDao;
+import com.law.lawonline.helper.RestApi;
 import com.law.lawonline.model.Result;
+import com.law.lawonline.model.SearchInput;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,23 +24,20 @@ public class SearchService implements Constants {
     public List<Result> search(final String text) {
         fileDao.save();
 
-        List<Result> results = Lists.newArrayList();
-//        SearchInput input = new SearchInput();
-//        input.setInputText(text);
-//        input.setIndexFrom(0);
-//        input.setIndexTo(10);
-//
-//        results = RestApi.search(input);
-//
+        SearchInput input = new SearchInput();
+        input.setInputText(StringUtils.trimToEmpty(text));
+        input.setIndexFrom(0);
+        input.setIndexTo(10);
+
+        List<Result> results = RestApi.search(input);
 //        //TODO - dummy data
-//        results.clear();
-        List<File> files = listFiles();
-        for (int i = 0; i < files.size(); i++) {
-            File f = files.get(i);
-            int x = i + 1;
-            results.add(new Result(String.valueOf(x), FilenameUtils.getBaseName(f.getName()),
-                    Lists.newArrayList("A" + x, "B" + x, "C" + x), f.getAbsolutePath(), Float.valueOf(x)));
-        }
+//        List<File> files = listFiles();
+//        for (int i = 0; i < files.size(); i++) {
+//            File f = files.get(i);
+//            int x = i + 1;
+//            results.add(new Result(String.valueOf(x), FilenameUtils.getBaseName(f.getName()),
+//                    Lists.newArrayList("A" + x, "B" + x, "C" + x), f.getAbsolutePath(), Float.valueOf(x)));
+//        }
 
         return results;
     }

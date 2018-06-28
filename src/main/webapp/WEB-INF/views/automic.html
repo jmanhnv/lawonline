@@ -16,7 +16,7 @@
     </th:block>
 
     <form id="search-form" class="js-validation-material form-horizontal push-30-t" th:action="@{/search}"
-          th:method="get">
+          th:method="get" accept-charset="UTF-8">
         <div class="form-group has-info">
             <div class="col-xs-10">
                 <div class="form-material input-group floating">
@@ -51,12 +51,13 @@
                 <tr th:each="result : ${results}">
                     <td>
                         <h3 class="h5 font-w600 push-10">
-                            <a class="link-effect" th:href="@{'/download/' + ${result.fileName}}" th:text="${result.fileName}" target="_blank"></a>
+                            <a class="link-effect" th:href="@{'/download/' + ${result.id}}"
+                               th:text="${result.id}" target="_blank"></a>
                             <!--<a class="link-effect" th:href="@{/download/{f}(f=${result.filePath})}" th:text="${result.fileName}" target="_blank"></a>-->
                             <!--<a class="link-effect" th:href="@{|/download/${result.filePath}|}" th:text="${result.fileName}" target="_blank"></a>-->
                         </h3>
                         <div class="push-10">
-                            <span class="label label-success" th:text="${result.id}"><i class="fa fa-check"></i></span>
+                            <span class="label label-success" th:text="${result.score}"><i class="fa fa-check"></i></span>
                         </div>
                         <!--<div th:each="item : ${result.highLight}">-->
                         <!--<span th:utext="${item}" class="font-s13 text-muted hidden-xs">Content ...</span>-->
@@ -81,24 +82,5 @@
         </div>
     </div>
 </div>
-
-<th:block layout:fragment="script">
-    <script type="text/javascript">
-        /*<![CDATA[*/
-        $('#search-form').on('click', function (e) {
-            e.preventDefault();
-            var frm = $('#search-form');
-            $.ajax({
-                url: $(this).attr("action"),//'/search',
-                method: $(this).attr("method"),//'POST',
-                data: 'query=' + $('#query').val(),
-                success: function (data, textStatus, jqXHR) {
-                    console.log("SUCCESS");
-                }
-            });
-        });
-        /*]]>*/
-    </script>
-</th:block>
 </body>
 </html>

@@ -35,7 +35,8 @@ public class AutomicCtrl implements Constants {
         return PageViewer.AUTOMIC.getView();
     }
 
-    @RequestMapping("/search")
+//    @RequestMapping(value = "/search", produces = "text/plain;charset=UTF-8", method = RequestMethod.POST)
+    @RequestMapping(value = "/search")
     public String search(Model model, @RequestParam("query") String searchKey, RedirectAttributes ra) {
         if (searchKey == null || searchKey.isEmpty()) {
             MessageHelper.addInfoAttribute(model, "Bạn chưa nhập nội dung tìm kiếm.");
