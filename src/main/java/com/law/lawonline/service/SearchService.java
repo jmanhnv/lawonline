@@ -3,6 +3,7 @@ package com.law.lawonline.service;
 import com.law.lawonline.common.Constants;
 import com.law.lawonline.dao.FileDao;
 import com.law.lawonline.helper.RestApi;
+import com.law.lawonline.model.Judgment;
 import com.law.lawonline.model.Result;
 import com.law.lawonline.model.SearchInput;
 import org.apache.commons.io.FileUtils;
@@ -53,5 +54,10 @@ public class SearchService implements Constants {
             LoggerFactory.getLogger(SearchService.class).error("listFiles has error: ", e.getCause());
             return Collections.EMPTY_LIST;
         }
+    }
+
+    public String getFilePathById(int id) {
+        Judgment judgment = fileDao.getJudgmentById(id);
+        return judgment != null ? judgment.getFilePath() : BLANK;
     }
 }

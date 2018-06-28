@@ -51,8 +51,7 @@
                 <tr th:each="result : ${results}">
                     <td>
                         <h3 class="h5 font-w600 push-10">
-                            <a class="link-effect" th:href="@{'/download/' + ${result.id}}"
-                               th:text="${result.id}" target="_blank"></a>
+                            <a class="link-effect" th:href="@{/download/{id}(id=${result.id})}" th:text="${result.id}" target="_blank"></a>
                             <!--<a class="link-effect" th:href="@{/download/{f}(f=${result.filePath})}" th:text="${result.fileName}" target="_blank"></a>-->
                             <!--<a class="link-effect" th:href="@{|/download/${result.filePath}|}" th:text="${result.fileName}" target="_blank"></a>-->
                         </h3>

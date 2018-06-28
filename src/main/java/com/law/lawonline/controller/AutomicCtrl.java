@@ -5,6 +5,7 @@ import com.law.lawonline.common.PageViewer;
 import com.law.lawonline.helper.MessageHelper;
 import com.law.lawonline.model.Result;
 import com.law.lawonline.service.SearchService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,7 +36,7 @@ public class AutomicCtrl implements Constants {
         return PageViewer.AUTOMIC.getView();
     }
 
-//    @RequestMapping(value = "/search", produces = "text/plain;charset=UTF-8", method = RequestMethod.POST)
+    //    @RequestMapping(value = "/search", produces = "text/plain;charset=UTF-8", method = RequestMethod.POST)
     @RequestMapping(value = "/search")
     public String search(Model model, @RequestParam("query") String searchKey, RedirectAttributes ra) {
         if (searchKey == null || searchKey.isEmpty()) {
@@ -68,9 +69,13 @@ public class AutomicCtrl implements Constants {
         outputStream.flush();
     }
 
-    @RequestMapping(value = "/download/{f}", method = RequestMethod.GET)
-    public void download(HttpServletResponse response, HttpServletRequest request, @PathVariable("f") String fileName) throws IOException {
-        File f = new File(USER_HOME + FILE_SEPARATOR + "data" + FILE_SEPARATOR + fileName + ".pdf");
+    @RequestMapping(value = "/download/{id}", method = RequestMethod.GET)
+    public void download(HttpServletResponse response, HttpServletRequest request, @PathVariable("id") String id) throws IOException {
+        String fPath = searchService.getFilePathById(Integer.valueOf(id));
+        if (StringUtils.isEmpty(fPath)) // set default
+            fPath = USER_HOME + FILE_SEPARATOR + "data" + FILE_SEPARATOR + "Ban an so 113-2018- HSST.pdf";
+
+        File f = new File(fPath);
         FileInputStream fis = new FileInputStream(f);
         byte[] buffer = new byte[10240]; // default set file size is 10MB
         ByteArrayOutputStream baos = new ByteArrayOutputStream();

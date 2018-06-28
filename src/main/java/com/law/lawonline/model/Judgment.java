@@ -1,38 +1,15 @@
 package com.law.lawonline.model;
 
-import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table(name = "judgment")
 public class Judgment {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
     private Integer id;
-
-    @Column(name = "file_path", nullable = false)
     private String filePath;
-
-    @Column(name = "category_id", nullable = false)
     private Integer categoryId;
-
-    @Column(name = "user_id", nullable = false)
     private Integer userId;
-
-    @Column(name = "file_name", nullable = false)
     private String fileName;
-
-    @Lob
-    @Column(name = "content", nullable = false, length = Integer.MAX_VALUE)
     private byte[] content;
-
-    @Column(name = "created_date")
-    @Temporal(TemporalType.DATE)
     private Date createdDate;
-
-    @Column(name = "updated_date")
-    @Temporal(TemporalType.DATE)
     private Date updatedDate;
 
     public Integer getId() {

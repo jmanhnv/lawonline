@@ -13,9 +13,6 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
-import java.util.Properties;
-
-import static org.hibernate.cfg.Environment.*;
 
 @Configuration
 @EnableTransactionManagement
@@ -28,34 +25,44 @@ public class WebAppConfig {
     ////////// Register beans of DataSource and JdbcTemplate. //////////
     @Bean
     public DataSource dataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-
-        Properties props = new Properties();
-        // Setting JDBC properties
-        props.put(DRIVER, env.getProperty("mysql.driverClassName"));
-        props.put(URL, env.getProperty("mysql.url"));
-        props.put(USER, env.getProperty("mysql.username"));
-        props.put(PASS, env.getProperty("mysql.password"));
-
-        // Setting Hibernate properties
-        props.put(DIALECT, env.getProperty("hibernate.dialect"));
-        props.put(HBM2DDL_AUTO, env.getProperty("hibernate.hbm2ddl.auto"));
-        props.put(SHOW_SQL, env.getProperty("hibernate.show_sql"));
-        props.put(FORMAT_SQL, env.getProperty("hibernate.format_sql"));
-        props.put(USE_SQL_COMMENTS, env.getProperty("hibernate.use_sql_comments"));
-
-        // Setting C3P0 properties
-        props.put(C3P0_MIN_SIZE, env.getProperty("hibernate.c3p0.min_size"));
-        props.put(C3P0_MAX_SIZE, env.getProperty("hibernate.c3p0.max_size"));
-        props.put(C3P0_ACQUIRE_INCREMENT, env.getProperty("hibernate.c3p0.acquire_increment"));
-        props.put(C3P0_TIMEOUT, env.getProperty("hibernate.c3p0.timeout"));
-        props.put(C3P0_MAX_STATEMENTS, env.getProperty("hibernate.c3p0.max_statements"));
-
-        dataSource.setConnectionProperties(props);
-
-        System.out.println(String.format("### DataSource {%s} ### already registered...", dataSource.getClass().getName()));
-        return dataSource;
+        DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
+        driverManagerDataSource.setUrl(env.getProperty("mysql.url"));
+        driverManagerDataSource.setUsername(env.getProperty("mysql.username"));
+        driverManagerDataSource.setPassword(env.getProperty("mysql.password"));
+        driverManagerDataSource.setDriverClassName(env.getProperty("mysql.driverClassName"));
+        return driverManagerDataSource;
     }
+
+//    @Bean
+//    public DataSource dataSource() {
+//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//
+//        Properties props = new Properties();
+//        // Setting JDBC properties
+//        props.put(DRIVER, env.getProperty("mysql.driverClassName"));
+//        props.put(URL, env.getProperty("mysql.url"));
+//        props.put(USER, env.getProperty("mysql.username"));
+//        props.put(PASS, env.getProperty("mysql.password"));
+//
+//        // Setting Hibernate properties
+//        props.put(DIALECT, env.getProperty("hibernate.dialect"));
+//        props.put(HBM2DDL_AUTO, env.getProperty("hibernate.hbm2ddl.auto"));
+//        props.put(SHOW_SQL, env.getProperty("hibernate.show_sql"));
+//        props.put(FORMAT_SQL, env.getProperty("hibernate.format_sql"));
+//        props.put(USE_SQL_COMMENTS, env.getProperty("hibernate.use_sql_comments"));
+//
+//        // Setting C3P0 properties
+//        props.put(C3P0_MIN_SIZE, env.getProperty("hibernate.c3p0.min_size"));
+//        props.put(C3P0_MAX_SIZE, env.getProperty("hibernate.c3p0.max_size"));
+//        props.put(C3P0_ACQUIRE_INCREMENT, env.getProperty("hibernate.c3p0.acquire_increment"));
+//        props.put(C3P0_TIMEOUT, env.getProperty("hibernate.c3p0.timeout"));
+//        props.put(C3P0_MAX_STATEMENTS, env.getProperty("hibernate.c3p0.max_statements"));
+//
+//        dataSource.setConnectionProperties(props);
+//
+//        System.out.println(String.format("### DataSource {%s} ### already registered...", dataSource.getClass().getName()));
+//        return dataSource;
+//    }
 
     @Bean
     public JdbcTemplate jdbcTemplate(DataSource dataSource) {
