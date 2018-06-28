@@ -34,16 +34,16 @@
         <div class="tab-pane fade fade-up active in">
             <div class="border-b push-30">
                 <h3 class="push-10" style="color: #f3b760;">
-                    <div th:if="${#lists.isEmpty(results)}">
-                        <span class="h5 font-w400 text-muted">Không tìm thấy nội dung phù hợp.</span>
+                    <div th:if="${!#strings.isEmpty(msg)}">
+                        <span class="h5 font-w400 text-muted" th:utext="${msg}"></span>
                     </div>
                     <div th:if="${!#lists.isEmpty(results)}">
                         <span th:text="${#lists.size(results)}"></span> <span class="h5 font-w400 text-muted">nội dung được tìm thấy.</span>
                     </div>
                 </h3>
-                <h5 class="font-w600 push-10">
-                    <a class="link-effect" th:href="@{/preview}" target="_blank">Preview</a>
-                </h5>
+                <!--<h5 class="font-w600 push-10">-->
+                <!--<a class="link-effect" th:href="@{/preview}" target="_blank">Preview</a>-->
+                <!--</h5>-->
             </div>
             <!--result search-->
             <table th:if="${!#lists.isEmpty(results)}" class="table table-striped table-vcenter">
@@ -51,12 +51,14 @@
                 <tr th:each="result : ${results}">
                     <td>
                         <h3 class="h5 font-w600 push-10">
-                            <a class="link-effect" th:href="@{/download/{id}(id=${result.id})}" th:text="${result.id}" target="_blank"></a>
+                            <a class="link-effect" th:href="@{/download/{id}(id=${result.id})}" th:text="${result.id}"
+                               target="_blank"></a>
                             <!--<a class="link-effect" th:href="@{/download/{f}(f=${result.filePath})}" th:text="${result.fileName}" target="_blank"></a>-->
                             <!--<a class="link-effect" th:href="@{|/download/${result.filePath}|}" th:text="${result.fileName}" target="_blank"></a>-->
                         </h3>
                         <div class="push-10">
-                            <span class="label label-success" th:text="${result.score}"><i class="fa fa-check"></i></span>
+                            <span class="label label-success" th:text="${result.score}"><i
+                                    class="fa fa-check"></i></span>
                         </div>
                         <!--<div th:each="item : ${result.highLight}">-->
                         <!--<span th:utext="${item}" class="font-s13 text-muted hidden-xs">Content ...</span>-->

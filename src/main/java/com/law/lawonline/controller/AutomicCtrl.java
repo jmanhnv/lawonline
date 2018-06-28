@@ -2,7 +2,6 @@ package com.law.lawonline.controller;
 
 import com.law.lawonline.common.Constants;
 import com.law.lawonline.common.PageViewer;
-import com.law.lawonline.helper.MessageHelper;
 import com.law.lawonline.model.Result;
 import com.law.lawonline.service.SearchService;
 import org.apache.commons.lang.StringUtils;
@@ -39,13 +38,11 @@ public class AutomicCtrl implements Constants {
     //    @RequestMapping(value = "/search", produces = "text/plain;charset=UTF-8", method = RequestMethod.POST)
     @RequestMapping(value = "/search")
     public String search(Model model, @RequestParam("query") String searchKey, RedirectAttributes ra) {
-        if (searchKey == null || searchKey.isEmpty()) {
-            MessageHelper.addInfoAttribute(model, "Bạn chưa nhập nội dung tìm kiếm.");
-        } else {
-            List<Result> results = searchService.search(searchKey);
-            model.addAttribute("results", results);
-        }
+        List<Result> results = searchService.search(searchKey);
+        if (results.isEmpty())
+            model.addAttribute("msg", "Không tìm thấy nội dung phù hợp.");
 
+        model.addAttribute("results", results);
         return PageViewer.AUTOMIC.getView();
     }
 
